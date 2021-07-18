@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>View</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    a {
+      text-decoration: none;
+    }
+
+    /*.margin {*/
+    /*    margin-left: 20%;*/
+    /*}*/
+
+    .div-ident {
+      margin-top: 5%;
+    }
+    body {
+      background: rgba(97, 203, 249, 0.6);
+    }
+    .navbar  {
+      background: rgba(97, 203, 249, 0.6);
+    }
+    .h1 {
+    /* EVENT PLANNER */
+
+      font-family: Montserrat, serif;
+      /*font-style: normal;*/
+      font-weight: 500;
+      font-size: 90px;
+      line-height: 105px;
+      text-align: center;
+
+      color: rgba(255, 255, 254, 0.85);
+    }
+
+    .img-position {
+      text-align: center;
+      margin-top: 10%;
+    }
+
+    .img-size {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-pos {
+      margin-left: 70%;
+    }
+
+    .btn {
+      width: 100px;
+      background-color: #fff;
+      color: #000;
+      border-color: #000;
+      border-radius: 10px;
+    }
+
+    .btn:hover {
+      background-color: #000;
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .size {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+    .position-nav {
+      width: 24%;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <form th:action="@{/authenticateTheUser}" method="post">
+      <div class="position-nav">
+        <input type="text" class="" id="username" name="username" placeholder="Введите имя пользователя" required>
+      </div>
+      <div class="position-nav">
+        <input type="password" class="" id="password" name="password" placeholder="Введите пароль" required>
+      </div>
+      <div class="position-nav">
+        <small class="form-text text-danger" th:if="${param.error != null}">Incorrect username or password</small>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0 btn-pos">
+      <div>
+        <a th:href="@{/registration}">
+          <button type="button" class="btn">Sign up</button>
+        </a>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="img-position">
+    <img class="img-size" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>
+  </div>
+  <div class="div-ident">
+    <h1 class="h1">EVENT PLANNER</h1>
+  </div>
+</div>
+</body>
+</html>

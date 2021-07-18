@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">
+    <style>
+        a {
+            text-decoration: none;
+        }
+        td, th {
+            text-align: center;
+            width: 80%;
+        }
+
+        /*.margin {*/
+        /*    margin-left: 20%;*/
+        /*}*/
+
+        .size {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        .btn {
+            width: 100px;
+            background-color: #fff;
+            color: #000;
+            border-color: #000;
+            border-radius: 10px;
+        }
+
+        .btn:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-f {
+            width: 200px;
+            background-color: #fff;
+            color: #000;
+            border-color: #000;
+            border-radius: 10px;
+        }
+
+        .btn-f:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        body {
+            background: ghostwhite;
+            font-family: Montserrat, serif;
+        }
+        .navbar  {
+            background: rgba(97, 203, 249, 0.6);
+        }
+
+        .btn-pos {
+            margin-left: 720px;
+        }
+
+        .btn-pos-l {
+            margin-left: 60px;
+        }
+
+        .position {
+            display: inline-block;
+        }
+
+        .img-size-2 {
+            width: 50px;
+            height: 50px;
+        }
+
+        .ident-left {
+            margin-left: 10px;
+        }
+        .ident-top {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<nav class="navbar">
+    <div>
+        <div class="position btn-pos-l">
+            <img class="img-size-2" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>
+        </div>
+        <div class="position ident-left">
+            <a href ="/view_by_date"><button type="button" class="btn" style="width: 200px">Find by date</button></a>
+        </div>
+        <div class="position">
+            <a href ="/view_by_date_and_time"><button type="button" class="btn" style="width: 230px">Find by date and time</button></a>
+        </div>
+        <div class="position btn-pos">
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button class="btn">Log out</button>
+            </form>
+        </div>
+    </div>
+    <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0 btn-pos">
+        <div>
+            <a th:href="@{/login}">
+                <button type="button" class="btn">Sign in</button>
+            </a>
+        </div>
+    </div>
+</nav>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <form class="form-inline" th:action="@{/view}" th:object="${note}" method="post">
+                <div class="form-group ident-top">
+<!--                    <div class="ident-top">-->
+                        <label for="date">DATE</label>
+                        <input class="form-control" type="date" id="date" name="date" th:field="*{date}" placeholder="date" required>
+                        <small class="form-text text-danger" th:each="err : ${#fields.errors('date')}" th:text="${err}">Validation error</small>
+                    </div>
+                    <div class="form-group ident-top">
+                        <label for="time">TIME</label>
+                        <input class="form-control" type="time" id="time" name="time"  th:field="*{time}" placeholder="time" required>
+                            <small class="form-text text-danger" th:each="err : ${#fields.errors('time')}" th:text="${err}">Validation error</small>
+                    </div>
+                    <div class="form-group ident-top">
+                        <label for="note_">NOTE</label>
+                        <textarea class="form-control" aria-label="With textarea" id="note_" th:field="*{note_}" placeholder="note" required></textarea>
+                            <small class="form-text text-danger" th:each="err : ${#fields.errors('note_')}" th:text="${err}">Validation error</small>
+                    </div>
+                <!--    <button type="button" class="btn btn-outline-secondary">Secondary</button>-->
+                <div class="form-row text-center ident-top">
+                    <button type="submit" class="btn">add</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 col-xs-6 col-md-6" th:switch="${notes}">
+            <h2 th:case = "null">Table is Empty</h2>
+            <div th:case="*">
+<!--        <p th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm:ss')}"></p>-->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>DATE</th>
+                        <th>TIME</th>
+                        <th>NOTE</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="note : ${notes}">
+                        <td th:text="${note.date}"></td>
+                        <td th:text="${note.time}"></td>
+                        <td th:text="${note.note_}"></td>
+                        <td><a th:href="@{edit/{id}(id=${note.id})}"><button type="button" class="btn">edit</button></a></td>
+                        <td><a th:href="@{delete/{id}(id=${note.id})}"><button type="button" class="btn">delete</button></a></td>
+<!--                    <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div>-->
+<!--  <form th:action="@{/view}">-->
+<!--    <input type="date" name="date" required/>-->
+<!--    <input type="submit" value="filter"/>-->
+<!--  </form>-->
+<!--</div>-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
