@@ -3,7 +3,6 @@ package com.project.planner.service;
 import com.project.planner.form.RegistrationUserForm;
 import com.project.planner.model.User;
 import com.project.planner.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

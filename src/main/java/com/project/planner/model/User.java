@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,5 +26,6 @@ public class User {
     )
     private List<Note> notes;
 
-
+    public User() {
+    }
 }

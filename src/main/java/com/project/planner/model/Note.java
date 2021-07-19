@@ -2,12 +2,9 @@ package com.project.planner.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
@@ -22,7 +19,6 @@ public class Note {
     @Column(name = "date")
     private Date date;
     @Column(name = "time")
-//    @DateTimeFormat (iso = DateTimeFormat.ISO.TIME)
     private String time;
 
     @ManyToOne

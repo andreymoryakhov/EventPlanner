@@ -2,25 +2,18 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>View</title>
+    <title>View Notes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
         a {
             text-decoration: none;
         }
         td, th {
             text-align: center;
-            width: 80%;
-        }
-
-        /*.margin {*/
-        /*    margin-left: 20%;*/
-        /*}*/
-
-        .size {
-            margin-left: 20%;
-            margin-right: 20%;
         }
 
         .btn {
@@ -32,20 +25,6 @@
         }
 
         .btn:hover {
-            background-color: #000;
-            color: #fff;
-            border-color: #fff;
-        }
-
-        .btn-f {
-            width: 200px;
-            background-color: #fff;
-            color: #000;
-            border-color: #000;
-            border-radius: 10px;
-        }
-
-        .btn-f:hover {
             background-color: #000;
             color: #fff;
             border-color: #fff;
@@ -97,7 +76,7 @@
         </div>
         <div class="position btn-pos">
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <button class="btn">Log out</button>
+                <button class="btn">Logout</button>
             </form>
         </div>
     </div>
@@ -157,7 +136,6 @@
                         <td th:text="${note.note_}"></td>
                         <td><a th:href="@{edit/{id}(id=${note.id})}"><button type="button" class="btn">edit</button></a></td>
                         <td><a th:href="@{delete/{id}(id=${note.id})}"><button type="button" class="btn">delete</button></a></td>
-<!--                    <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>-->
                     </tr>
                     </tbody>
                 </table>
@@ -165,16 +143,5 @@
         </div>
     </div>
 </div>
-<!--<div>-->
-<!--  <form th:action="@{/view}">-->
-<!--    <input type="date" name="date" required/>-->
-<!--    <input type="submit" value="filter"/>-->
-<!--  </form>-->
-<!--</div>-->
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

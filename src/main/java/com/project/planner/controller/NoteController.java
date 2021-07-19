@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class NoteController {
@@ -27,30 +26,10 @@ public class NoteController {
         this.userService = userService;
     }
 
-//    @GetMapping("/")
-//    public String showMainPage() {
-//        return "calendar";
-//    }
-
-//    public void date(Model model) {
-//        model.addAttribute("standardDate", new Date());
-//    }
-
     @GetMapping("/")
     public String show() {
         return "main";
     }
-
-//    @GetMapping("/create")
-//    public String createForm(Note note) {
-//        return "create";
-//    }
-//
-//    @PostMapping("/create")
-//    public String create(Note note) {
-//        noteService.save(note);
-//        return "redirect:/";
-//    }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
@@ -62,35 +41,19 @@ public class NoteController {
     public String editForm(Model model, @PathVariable("id") Long id, Principal principal) {
         Note note = noteService.findById(id);
         model.addAttribute("note", note);
-//        model.addAttribute("notes", noteService.findByUserUserName(principal.getName()));
         return "edit";
     }
-
-//    @GetMapping("/user-update/{id}")
-//    public String updateUserForm(@PathVariable("id") Long id, Model model){
-//        User user = userService.findById(id);
-//        model.addAttribute("user", user);
-//        return "user-update";
-//    }
-//
-//    @PostMapping("/user-update")
-//    public String updateUser(User user){
-//        userService.saveUser(user);
-//        return "redirect:/users";
-//    }
 
     @PostMapping("/edit")
     public String edit(Note note, Principal principal) {
         User user = userService.findByUserName(principal.getName()).get();
         note.setUser(user);
-//        noteService.save(note);
         noteService.save(note);
         return "redirect:/view_note";
     }
 
     @GetMapping("/view_note")
     public String view(Model model, Note note, Principal principal) {
-        //date = "2021-07-10";
         List<Note> notes = noteService.findAll();
         model.addAttribute("notes", notes);
         model.addAttribute("notes", noteService.findByUserUserName(principal.getName()));

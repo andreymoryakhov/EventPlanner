@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NoteService {
@@ -24,16 +23,8 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    public List<Note> findByDate(Date date) {
-        return noteRepository.findByDate(date);
-    }
-
     public List<Note> findByDateAndUserUserName(Date date, String userName) {
         return noteRepository.findByDateAndUserUserName(date, userName);
-    }
-
-    public List<Note> findByDateAndTime(Date date, String time) {
-        return noteRepository.findByDateAndTime(date, time);
     }
 
     public List<Note> findByDateAndTimeAndUserUserName(Date date, String time, String userName) {

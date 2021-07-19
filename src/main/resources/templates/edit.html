@@ -1,122 +1,98 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Edit</title>-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
-<!--    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">-->
-<!--    <style>-->
-<!--        .navbar  {-->
-<!--            background: rgba(97, 203, 249, 0.6);-->
-<!--        }-->
-
-<!--        body {-->
-<!--            background: ghostwhite;-->
-<!--            font-family: Montserrat, serif;-->
-<!--        }-->
-
-<!--        .btn {-->
-<!--            width: 100px;-->
-<!--            background-color: #fff;-->
-<!--            color: #000;-->
-<!--            border-color: #000;-->
-<!--            border-radius: 10px;-->
-<!--        }-->
-
-<!--        .btn:hover {-->
-<!--            background-color: #000;-->
-<!--            color: #fff;-->
-<!--            border-color: #fff;-->
-<!--        }-->
-
-<!--        .div-pos {-->
-<!--            margin-left: 41%;-->
-<!--            margin-right: 41%;-->
-<!--        }-->
-
-<!--        .ident-top {-->
-<!--            margin-top: 12px;-->
-<!--        }-->
-
-<!--        .img-size-2 {-->
-<!--            width: 50px;-->
-<!--            height: 50px;-->
-<!--        }-->
-
-<!--        .btn-pos-l {-->
-<!--            margin-left: 60px;-->
-<!--        }-->
-
-<!--        .img-position {-->
-<!--            text-align: center;-->
-<!--        }-->
-
-<!--        .img-size {-->
-<!--            width: 265px;-->
-<!--            height: 265px;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<nav class="navbar">-->
-<!--    <div>-->
-<!--        <div class="position btn-pos-l">-->
-<!--            <img class="img-size-2" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-6 col-sm-6 col-xs-6">-->
-<!--            <form th:action="@{/edit}" th:object="${notes}" method="post">-->
-<!--                <div class="form-group ident-top">-->
-<!--                    <label for="date">DATE</label>-->
-<!--                    <input type="date" class="form-control" th:field="*{date}" id="date" placeholder="date">-->
-<!--                </div>-->
-<!--                <div class="form-group ident-top">-->
-<!--                    <label for="time">TIME</label>-->
-<!--                    <input type="time" class="form-control"  th:field="*{time}" id="time" placeholder="time">-->
-<!--                </div>-->
-<!--                <div class="form-group ident-top">-->
-<!--                    <label for="note_">NOTE</label>-->
-<!--                    <textarea class="form-control" aria-label="With textarea" id="note_" th:field="*{note_}" placeholder="note" required></textarea>                </div>-->
-<!--                <div class="form-row text-center ident-top">-->
-<!--                    <input type="submit" class="btn" value="update">-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--        <div class="col-md-6 col-sm-6 col-xs-6">-->
-<!--            <div class="img-position">-->
-<!--                &lt;!&ndash;                <img class="img-size" src="https://img.icons8.com/ios/452/notepad.png"/>&ndash;&gt;-->
-<!--                <img class="img-size" src="https://filearchive.cnews.ru/img/news/2021/03/18/notepadlargetile.scale400.png"/>-->
-<!--                &lt;!&ndash;                <img class="img-size" src="https://image.flaticon.com/icons/png/512/40/40358.png"/>&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create user</title>
+    <title>Edit Note</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">
+    <style>
+        .navbar  {
+            background: rgba(97, 203, 249, 0.6);
+        }
+
+        body {
+            background: ghostwhite;
+            font-family: Montserrat, serif;
+        }
+
+        .btn {
+            width: 100px;
+            background-color: #fff;
+            color: #000;
+            border-color: #000;
+            border-radius: 10px;
+        }
+
+        .btn:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .ident-top {
+            margin-top: 12px;
+        }
+
+        .img-size-2 {
+            width: 50px;
+            height: 50px;
+        }
+
+        .btn-pos-l {
+            margin-left: 60px;
+        }
+
+        .img-position {
+            text-align: center;
+        }
+
+        .img-size {
+            width: 265px;
+            height: 265px;
+        }
+    </style>
 </head>
+<nav class="navbar">
+    <div>
+        <div class="position btn-pos-l">
+            <img class="img-size-2" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>
+        </div>
+    </div>
+</nav>
 <body>
-<form action="#" th:action="@{/edit}" th:object="${note}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="date">Date</label>
-    <input type="date" th:field="*{date}" id="date" placeholder="date">
-    <br/>
-    <label for="time">Time</label>
-    <input type="text" th:field="*{time}" id="time" placeholder="time">
-    <br/>
-    <label for="note_">Note</label>
-    <input type="text" th:field="*{note_}" id="note_" placeholder="note_">
-    <br/>
-    <input type="submit" value="Update Note">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <form action="#" th:action="@{/edit}" th:object="${note}" method="post">
+                <div class="form-group ident-top">
+                    <label for="id">#</label>
+                    <input class="form-control" readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+                </div>
+                <div class="form-group ident-top">
+                    <label for="date">DATE</label>
+                    <input class="form-control" type="date" th:field="*{date}" id="date" placeholder="date" required>
+                </div>
+                <div class="form-group ident-top">
+                    <label for="time">TIME</label>
+                    <input class="form-control" type="text" th:field="*{time}" id="time" placeholder="time" required>
+                </div>
+                <div class="form-group ident-top">
+                    <label for="note_">NOTE</label>
+                    <textarea class="form-control" aria-label="With textarea" id="note_" th:field="*{note_}" placeholder="note" required></textarea>
+                </div>
+                <div class="form-row text-center ident-top">
+                    <input type="submit" class="btn" value="update">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="img-position">
+                <!--                <img class="img-size" src="https://img.icons8.com/ios/452/notepad.png"/>-->
+                <img class="img-size" src="https://filearchive.cnews.ru/img/news/2021/03/18/notepadlargetile.scale400.png"/>
+                <!--                <img class="img-size" src="https://image.flaticon.com/icons/png/512/40/40358.png"/>-->
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

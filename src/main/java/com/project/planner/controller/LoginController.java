@@ -1,7 +1,6 @@
 package com.project.planner.controller;
 
 import com.project.planner.form.RegistrationUserForm;
-import com.project.planner.repository.UserRepository;
 import com.project.planner.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
