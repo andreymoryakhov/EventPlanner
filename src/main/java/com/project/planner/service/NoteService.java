@@ -28,8 +28,16 @@ public class NoteService {
         return noteRepository.findByDate(date);
     }
 
+    public List<Note> findByDateAndUserUserName(Date date, String userName) {
+        return noteRepository.findByDateAndUserUserName(date, userName);
+    }
+
     public List<Note> findByDateAndTime(Date date, String time) {
         return noteRepository.findByDateAndTime(date, time);
+    }
+
+    public List<Note> findByDateAndTimeAndUserUserName(Date date, String time, String userName) {
+        return noteRepository.findByDateAndTimeAndUserUserName(date, time, userName);
     }
 
     public List<Note> findByUserUserName(String userName) {
@@ -40,7 +48,7 @@ public class NoteService {
         noteRepository.deleteById(id);
     }
 
-    public Optional<Note> findById(Long id) {
-       return noteRepository.findById(id);
+    public Note findById(Long id){
+        return noteRepository.getOne(id);
     }
 }

@@ -45,7 +45,6 @@ public class LoginController {
             bindingResult.rejectValue("password", "", "Passwords don't match");
             return "registration";
         }
-
         userService.create(registrationUserForm);
         return "redirect:/login";
     }

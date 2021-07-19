@@ -59,13 +59,31 @@ public class NoteController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(Model model, @PathVariable("id") Long id) {
-        Optional<Note> notes = noteService.findById(id);
-        model.addAttribute("notes", notes);
+    public String editForm(Model model, @PathVariable("id") Long id, Principal principal) {
+        Note note = noteService.findById(id);
+        model.addAttribute("note", note);
+//        model.addAttribute("notes", noteService.findByUserUserName(principal.getName()));
         return "edit";
     }
+
+//    @GetMapping("/user-update/{id}")
+//    public String updateUserForm(@PathVariable("id") Long id, Model model){
+//        User user = userService.findById(id);
+//        model.addAttribute("user", user);
+//        return "user-update";
+//    }
+//
+//    @PostMapping("/user-update")
+//    public String updateUser(User user){
+//        userService.saveUser(user);
+//        return "redirect:/users";
+//    }
+
     @PostMapping("/edit")
-    public String edit(Note note) {
+    public String edit(Note note, Principal principal) {
+        User user = userService.findByUserName(principal.getName()).get();
+        note.setUser(user);
+//        noteService.save(note);
         noteService.save(note);
         return "redirect:/view_note";
     }
@@ -88,15 +106,15 @@ public class NoteController {
     }
 
     @GetMapping("/view_by_date")
-    public String showByDate(Model model, @Param("date") Date date) {
-        List<Note> notes = noteService.findByDate(date);
+    public String showByDate(Model model, @Param("date") Date date, Principal principal) {
+        List<Note> notes = noteService.findByDateAndUserUserName(date, principal.getName());
         model.addAttribute("notes", notes);
         return "view_by_date";
     }
 
     @GetMapping("/view_by_date_and_time")
-    public String showByDateAndTime(Model model, @Param("date") Date date, @Param("time") String time) {
-        List<Note> notes = noteService.findByDateAndTime(date, time);
+    public String showByDateAndTime(Model model, @Param("date") Date date, @Param("time") String time, Principal principal) {
+        List<Note> notes = noteService.findByDateAndTimeAndUserUserName(date, time, principal.getName());
         model.addAttribute("notes", notes);
         return "view_by_date_and_time";
     }
