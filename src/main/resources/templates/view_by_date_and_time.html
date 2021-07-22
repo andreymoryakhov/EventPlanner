@@ -8,7 +8,6 @@
     <style>
         td, th {
             text-align: center;
-            width: 30%;
         }
 
         .navbar  {
@@ -46,6 +45,11 @@
         .img-size-2 {
             width: 50px;
             height: 50px;
+            transition: transform .3s;
+        }
+
+        .img-size-2:hover {
+            transform: scale(1.1);
         }
 
         .btn-pos-l {
@@ -56,7 +60,9 @@
 <nav class="navbar">
     <div>
         <div class="position btn-pos-l">
-            <img class="img-size-2" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>
+            <a th:href="@{/view_note}">
+                <img class="img-size-2" src="https://upload.wikimedia.org/wikipedia/ru/1/13/Windows_Notepad_Icon.png"/>
+            </a>
         </div>
     </div>
 </nav>

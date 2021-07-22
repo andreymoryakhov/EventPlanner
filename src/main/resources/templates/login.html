@@ -13,13 +13,16 @@
         .div-ident {
             margin-top: 5%;
         }
+
         body {
             background: rgba(97, 203, 249, 0.6);
             font-family: Montserrat, serif;
         }
+
         .navbar  {
             background: rgba(97, 203, 249, 0.6);
         }
+
         .h1 {
             font-style: normal;
             font-weight: bolder;
@@ -79,22 +82,24 @@
     <div>
         <div class="position btn-pos-l">
             <form th:action="@{/authenticateTheUser}" method="post">
-                <small class="form-text text-danger" th:if="${param.error != null}">Incorrect username or password</small>
                 <div class="position">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <input type="text" style="border-radius: 10px; border-color: black" class="form-control" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="position">
-                <input type="password" class="form-control" id="passwrod" name="password" placeholder="Password" required>
+                    <input type="password" style="border-radius: 10px; border-color: black" class="form-control" id="passwrod" name="password" placeholder="Password" required>
                 </div>
                 <div class="position">
-                <button type="submit" class="btn">SIGN IN</button>
+                    <button type="submit" class="btn">SIGN IN</button>
+                </div>
+                <div sec:authorize="isAnonymous()" class="position">
+                    <a th:href="@{/registration}">
+                        <button type="button" class="btn">SIGN UP</button>
+                    </a>
+                </div>
+                <div class="position">
+                    <small class="form-text text-danger" th:if="${param.error != null}">Incorrect username or password</small>
                 </div>
             </form>
-        </div>
-        <div sec:authorize="isAnonymous()" class="position">
-            <a th:href="@{/registration}">
-                <button type="button" class="btn">SIGN UP</button>
-            </a>
         </div>
     </div>
 </nav>

@@ -19,11 +19,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/mainPage")
-    public String show() {
-        return "mainPage";
-    }
-
     @GetMapping("/login")
     public String loginPage() {
         return "login";
